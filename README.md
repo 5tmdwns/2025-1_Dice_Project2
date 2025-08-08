@@ -1,2 +1,5 @@
-# 2025-1_Dice_Project2
-경희대학교 2025-1학기 디지털집적회로모델링실험 프로젝트2
+<p align="center">
+  <h1 align="center">Huskylens, GUI를 포함한 RC카 제작✨</h1>
+</p>
+
+(코드 수정중)
