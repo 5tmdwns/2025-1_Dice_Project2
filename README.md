@@ -31,8 +31,8 @@
 ## 2. Block Diagram
 <table>
   <tr>
-    <td align="center"><img width="90%" alt="Block Diagram" src="https://github.com/user-attachments/assets/2e7d7f98-7f2d-429b-824f-cdb8d816c211" /></td>
-    <td align="center"><img width="90%" alt="RC Car" src="https://github.com/user-attachments/assets/e3650760-bdee-46af-aafb-3c858c573c0d" />
+    <td align="center"><img width="100%" alt="Block Diagram" src="https://github.com/user-attachments/assets/2e7d7f98-7f2d-429b-824f-cdb8d816c211" /></td>
+    <td align="center"><img width="100%" alt="RC Car" src="https://github.com/user-attachments/assets/e3650760-bdee-46af-aafb-3c858c573c0d" />
 </td>
   </tr>
   <td align="center">Block Diagram</td>
