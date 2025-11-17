@@ -57,7 +57,7 @@
 - XADC 모듈에서 DO Port 및 DRP(Dynamic Reconfiguration Port) Interface를 통해 Value를 받음
 - AMD's UG480 Documentation 참고 ([AMD's UG480 Documentation📄](https://docs.amd.com/r/en-US/ug480_7Series_XADC))
 
-<table>
+<table align="center">
   <tr>
     <td align="center"><img width="100%" alt="do_out[15:4] value 1" src="https://github.com/user-attachments/assets/dcf13b76-2462-4bdb-a343-71d86b6b9f1e" /></td>
     <td align="center"><img width="100%" alt="do_out[15:4] value 2" src="https://github.com/user-attachments/assets/e922fbbb-fdcd-42b3-b44c-9eb0e5c4dbb6" /></td>
@@ -149,7 +149,7 @@ endmodule
 
 <table>
   <tr>
-    <td align="center colspan="2"><img width="100%" alt="Kartrider Rush Plus Image" src="https://github.com/user-attachments/assets/da615d76-5465-42f5-9c41-406ee90c0de8" /></td>
+    <td align="center" colspan="2"><img width="100%" alt="Kartrider Rush Plus Image" src="https://github.com/user-attachments/assets/da615d76-5465-42f5-9c41-406ee90c0de8" /></td>
   </tr>
   <tr>
     <td align="center"><img width="100%" alt="MIT APP INVENTOR 1" src="https://github.com/user-attachments/assets/669568bd-82d4-4f4d-b769-73fca9d5e152" /></td>
