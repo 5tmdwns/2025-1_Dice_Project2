@@ -162,4 +162,48 @@ endmodule
 - 실시간으로 허스키렌즈의 화살표 벡터 값을 모니터링 할 수 있도록 구현
 - 수동조작모드에서도 화살표 벡터 값 확인 가능
 
+## 5. Driving Algorithm with Huskylens
+### Driving Algorithm
 
+<table>
+  <tr>
+    <td align="center"><img width="80%" alt="Huskylens Algorithm" src="https://github.com/user-attachments/assets/b242f461-aa9e-4232-8071-232e76f1908b" /></td>
+  </tr>
+  <tr>
+    <td aligne="center">화살표 x, y 좌표만 사용</td>
+  </tr>
+</table>
+
+``` verilog
+//...
+   wire signed [16:0] 			   dx = $signed(target_x) - $signed(origin_x);
+   wire signed [16:0] 			   dy = $signed(target_y) - $signed(origin_y);
+
+   wire 				   forward_enable  = (target_x > 16'd100 && target_x < 16'd200 && target_y <= 16'd130);
+   wire 				   backward_enable = (target_x > 16'd100 && target_x < 16'd200 && target_y > 16'd130 && target_y < 16'd200);
+   wire 				   left_enable     = (target_x < 16'd101);
+   wire 				   right_enable    = (target_x > 16'd199 || suspicious_corner);
+   wire 				   suspicious_corner = ((target_y > 16'd200 && target_y < 16'd240) || (dx > -30 && dx < 0 && dy > -30 && dy < 0));
+
+   reg 					   turn_phase;
+   reg [22:0] 				   cnt;
+//...
+```
+
+- `target_x`와 `target_y`의 좌표값을 통해 전진, 후진, 좌, 우 결정
+
+### For Bypass
+
+<table>
+  <tr>
+    <td align="center"><img width="70%" alt="Bypass Path" src="https://github.com/user-attachments/assets/5a268ae8-4fb4-4c78-a954-390496a22902" /></td>
+    <td align="center"><img width="100%" alt="Bypass Path Huskylens Vector" src="https://github.com/user-attachments/assets/056de300-0562-46d5-a9fe-a2ea61361b10" /></td>
+  </tr>
+</table>
+
+&nbsp; 시간단축을 위해서, 좌측의 해당 곡선 구간을 Bypass로 직선처럼 뚫고 가도 된다고 하셨습니다.😅
+그래서 왼쪽 가장자리에서 보이는 화살표의 벡터를 메뉴얼로 `suspicious_corner`로 잡고, 해당 구간의 벡터가 생성되었을 시, 우회전하도록 코드를 작성했습니다. (일종의 편법😂)
+
+## Demonstration Video
+- [시연](https://drive.google.com/file/d/1z0jZW0NXodH2Qp09Abp8ZEoy0Y-oiPmv/view?usp=share_link)
+- [야간주행](https://drive.google.com/file/d/1WUIFHR_LId_Tm8nQf5J5kNpQTcRpVetm/view?usp=share_link)
