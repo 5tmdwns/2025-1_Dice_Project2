@@ -165,7 +165,7 @@ endmodule
 ## 5. Driving Algorithm with Huskylens
 ### Driving Algorithm
 
-<table aligne="center">
+<table align="center">
   <tr>
     <td align="center"><img width="60%" alt="Huskylens Algorithm" src="https://github.com/user-attachments/assets/b242f461-aa9e-4232-8071-232e76f1908b" /></td>
   </tr>
@@ -201,8 +201,8 @@ endmodule
   </tr>
 </table>
 
-&nbsp; 시간단축을 위해서, 좌측의 해당 곡선 구간을 Bypass로 직선처럼 뚫고 가도 된다고 하셨습니다.😅 <br/>
-그래서 왼쪽 가장자리에서 보이는 화살표의 벡터를 메뉴얼로 `suspicious_corner`로 잡고, 해당 구간의 벡터가 생성되었을 시, 우회전하도록 코드를 작성했습니다. (일종의 편법😂) <br/>
+&nbsp;시간단축을 위해서, 좌측의 해당 곡선 구간을 Bypass로 직선처럼 뚫고 가도 된다고 하셨습니다.😅 <br/>
+그래서 왼쪽 가장자리에서 보이는 화살표의 벡터를 메뉴얼로 `suspicious_corner`로 잡고, 해당 구간의 벡터가 생성되었을 시 우회전하도록 코드를 작성했습니다. (일종의 편법😂) <br/>
 
 ## Demonstration Video
 - [시연](https://drive.google.com/file/d/1z0jZW0NXodH2Qp09Abp8ZEoy0Y-oiPmv/view?usp=share_link)
