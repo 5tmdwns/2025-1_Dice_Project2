@@ -55,7 +55,7 @@
 
 - Xilinx XADC 모듈을 사용하여 아날로그 Input 처리
 - XADC 모듈에서 DO Port 및 DRP(Dynamic Reconfiguration Port) Interface를 통해 Value를 받음
-- AMD's UG480 Documentation 참고 [AMD's UG480 Documentation📄](https://docs.amd.com/r/en-US/ug480_7Series_XADC)
+- AMD's UG480 Documentation 참고 ([AMD's UG480 Documentation📄](https://docs.amd.com/r/en-US/ug480_7Series_XADC))
 
 <table>
   <tr>
