@@ -149,7 +149,7 @@ endmodule
 
 <table>
   <tr>
-    <td align="center colspan="2><img width="100%" alt="Kartrider Rush Plus Image" src="https://github.com/user-attachments/assets/da615d76-5465-42f5-9c41-406ee90c0de8" /></td>
+    <td align="center colspan="2"><img width="100%" alt="Kartrider Rush Plus Image" src="https://github.com/user-attachments/assets/da615d76-5465-42f5-9c41-406ee90c0de8" /></td>
   </tr>
   <tr>
     <td align="center"><img width="100%" alt="MIT APP INVENTOR 1" src="https://github.com/user-attachments/assets/669568bd-82d4-4f4d-b769-73fca9d5e152" /></td>
