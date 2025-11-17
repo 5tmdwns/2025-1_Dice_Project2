@@ -39,3 +39,127 @@
   <td align="center">최종 RC카 외관 모습</td>
 </table>
 
+## 3. Additional Functions with Two Sensors
+### Photoresistor for Headlight
+
+<table>
+  <tr>
+    <td align="center"><img width="100%" alt="Photoresistor Test" src="https://github.com/user-attachments/assets/30231c39-1cc1-4a73-867a-5118dff0735f" /></td>
+    <td align="center"><img width="100%" alt="Photoresistor Track Test" src="https://github.com/user-attachments/assets/80e12e4f-f827-4510-83aa-5fce6241013f" /></td>  
+  </tr>
+  <tr>
+    <td align="center">조도센서 테스트</td>
+    <td align="center">주행 시 조도센서 테스트</td>
+  </tr>
+</table>
+
+- Xilinx XADC 모듈을 사용하여 아날로그 Input 처리
+- XADC 모듈에서 DO Port 및 DRP(Dynamic Reconfiguration Port) Interface를 통해 Value를 받음
+- AMD's UG480 Documentation 참고 (AMD's UG480 Documentation📄)[https://docs.amd.com/r/en-US/ug480_7Series_XADC]
+
+<table>
+  <tr>
+    <td align="center"><img width="100%" alt="do_out[15:4] value 1" src="https://github.com/user-attachments/assets/dcf13b76-2462-4bdb-a343-71d86b6b9f1e" /></td>
+    <td align="center"><img width="100%" alt="do_out[15:4] value 2" src="https://github.com/user-attachments/assets/e922fbbb-fdcd-42b3-b44c-9eb0e5c4dbb6" /></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">Uart를 통해 시리얼 모니터로 do_out[15:4]값의 범위 확인</td>
+  </tr>
+</table>
+
+### Ultrasonic for Distance-based Beeping Step Output
+
+``` verilog
+//...
+   // Update beep period every time distance is updated
+   always @(posedge clk) begin
+      if (rst) begin
+         beep_period <= 0;
+      end else if (valid) begin
+         if (distance < 10)
+           beep_period <= 100000;   // very fast beep (~8ms)
+         else if (distance < 15)
+           beep_period <= 300000;   // ~25ms
+         else if (distance < 20)
+           beep_period <= 600000;   // 50ms
+         else if (distance < 25)
+           beep_period <= 1200000;  // 100ms
+         else if (distance < 30)
+           beep_period <= 2400000;  // 200ms
+         else
+           beep_period <= 32'hFFFFFFFF; // disable
+      end
+   end
+//...
+```
+
+&nbsp;차량 전방에 장애물 등장시의 초음파센서를 통한 비프음 속도 조정 <br/>
+- Distance < 30, Beep Period == 200ms
+- Distance < 25, Beep Period == 100ms
+- Distance < 20, Beep Period == 50ms
+- Distance < 15, Beep Period == ~25ms
+- Distance < 10, Beep Period == ~8ms (Very Fast!!!)
+
+``` verilog
+//...
+   // Beep ON/OFF timing control
+   always @(posedge clk) begin
+      if (rst) begin
+         beep_cnt <= 0;
+         tone_en <= 0;
+      end else if (beep_period == 32'hFFFFFFFF) begin
+         tone_en <= 0;               // no sound
+         beep_cnt <= 0;
+      end else begin
+         beep_cnt <= beep_cnt + 1;
+         if (beep_cnt >= beep_period) begin
+            beep_cnt <= 0;
+            tone_en <= ~tone_en;    // toggle ON/OFF
+         end
+      end
+   end
+
+   // 800Hz tone generation
+   always @(posedge clk) begin
+      if (rst) begin
+         tone_cnt <= 0;
+         buzzer <= 0;
+      end else if (!tone_en) begin
+         tone_cnt <= 0;
+         buzzer <= 0;
+      end else begin
+         tone_cnt <= tone_cnt + 1;
+         if (tone_cnt < tone_period / 2)
+           buzzer <= 1;
+         else if (tone_cnt < tone_period)
+           buzzer <= 0;
+         else
+           tone_cnt <= 0;
+      end
+   end
+endmodule
+//...
+```
+
+&nbsp; Cmod-s7의 12Mhz Clock을 이용해 800Hz Tone Generation <br/>
+`beep_period`가 커질수록 토글 간격이 길어짐 <br/>
+
+## 4. GUI(MIT APP INVENTOR) with Bluetooth
+### GUI Interface
+
+<table>
+  <tr>
+    <td align="center colspan="2><img width="100%" alt="Kartrider Rush Plus Image" src="https://github.com/user-attachments/assets/da615d76-5465-42f5-9c41-406ee90c0de8" /></td>
+  </tr>
+  <tr>
+    <td align="center"><img width="100%" alt="MIT APP INVENTOR 1" src="https://github.com/user-attachments/assets/669568bd-82d4-4f4d-b769-73fca9d5e152" /></td>
+    <td align="center"><img width="100%" alt="MIT APP INVENTOR 2" src="https://github.com/user-attachments/assets/8e99db48-79e0-435f-ad3e-87d4d30c4905" /></td>
+  </tr>
+</table>
+
+- Motive : Kartrider Rush Plus
+- 수동조작모드와 허스키렌즈를 통한 라인트래킹 자율주행 모드 구현
+- 실시간으로 허스키렌즈의 화살표 벡터 값을 모니터링 할 수 있도록 구현
+- 수동조작모드에서도 화살표 벡터 값 확인 가능
+
+
