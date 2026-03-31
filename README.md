@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Xilinx FPGA, Huskylens, GUI를 활용한 RC카✨</h1>
+  <h1 align="center">Xilinx Spartan-7, Huskylens, GUI를 활용한 Line Tracer RC카✨</h1>
   <p align="center">
     <img width="20%" alt="시연 Gif" src="https://github.com/user-attachments/assets/125cc014-25e3-4e1c-aeda-743a71c58d50" />
   </p>
